@@ -12,17 +12,18 @@ import java.util.function.Predicate;
 @Component
 public class UserDaoServiceImpl implements UserDaoService {
     private static List<User> users = new ArrayList<>();
+    private static int userCount = 0;
     static {
         users.add(new User(
-                1, "Adam", LocalDate.now().minusYears(30)
+                ++userCount, "Adam", LocalDate.now().minusYears(30)
             )
         );
         users.add(new User(
-                2, "Eve", LocalDate.now().minusYears(25)
+                ++userCount, "Eve", LocalDate.now().minusYears(25)
             )
         );
         users.add(new User(
-                3, "Jim", LocalDate.now().minusYears(20)
+                ++userCount, "Jim", LocalDate.now().minusYears(20)
             )
         );
     }
