@@ -4,9 +4,7 @@ import com.dgmf.entity.User;
 import com.dgmf.service.UserDaoService;
 import com.dgmf.service.impl.UserDaoServiceImpl;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -25,5 +23,11 @@ public class UserResource {
     @GetMapping("/users/{id}")
     public User retrieveUser(@PathVariable("id") int userId) {
         return userDaoService.findOneById(userId);
+    }
+
+    // Save User REST API
+    @PostMapping("/users")
+    public User saveUser(@RequestBody User user) {
+        return userDaoService.saveUser(user);
     }
 }

@@ -37,4 +37,12 @@ public class UserDaoServiceImpl implements UserDaoService {
 
         return users.stream().filter(predicate).findFirst().get();
     }
+
+    @Override
+    public User saveUser(User user) {
+        user.setId(++userCount);
+        users.add(user);
+
+        return user;
+    }
 }
