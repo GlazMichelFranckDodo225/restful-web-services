@@ -1,6 +1,7 @@
 package com.dgmf.controller;
 
 import com.dgmf.entity.User;
+import com.dgmf.exception.UserNotFoundException;
 import com.dgmf.service.UserDaoService;
 import com.dgmf.service.impl.UserDaoServiceImpl;
 import lombok.RequiredArgsConstructor;
@@ -25,7 +26,12 @@ public class UserResource {
     // Get User By Id REST API
     @GetMapping("/users/{id}")
     public User retrieveUser(@PathVariable("id") int userId) {
-        return userDaoService.findOneById(userId);
+        User user = userDaoService.findOneById(userId);
+
+        if(user == null) throw new
+                UserNotFoundException("Id");
+
+        return user;
     }
 
     // Create User REST API
