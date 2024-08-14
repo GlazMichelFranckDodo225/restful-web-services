@@ -4,8 +4,11 @@ import com.dgmf.entity.User;
 import com.dgmf.service.UserDaoService;
 import com.dgmf.service.impl.UserDaoServiceImpl;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
+import java.net.URI;
 import java.util.List;
 
 @RestController
@@ -25,9 +28,16 @@ public class UserResource {
         return userDaoService.findOneById(userId);
     }
 
-    // Save User REST API
+    // Create User REST API
     @PostMapping("/users")
-    public User saveUser(@RequestBody User user) {
-        return userDaoService.saveUser(user);
+    public ResponseEntity<User> createUser(@RequestBody User user) {
+        User savedUser = userDaoService.saveUser(user);
+        // "/users/4" => "/users/" + "user.getId"
+        URI location = ServletUriComponentsBuilder.fromCurrentRequest()
+                .path("/{id}")
+                .buildAndExpand(savedUser.getId())
+                .toUri();
+
+        return ResponseEntity.created(location).build();
     }
 }
