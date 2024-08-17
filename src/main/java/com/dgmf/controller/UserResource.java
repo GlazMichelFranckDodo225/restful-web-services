@@ -29,7 +29,7 @@ public class UserResource {
         User user = userDaoService.findOneById(userId);
 
         if(user == null) throw new
-                UserNotFoundException("Id");
+                UserNotFoundException("Id : " + userId);
 
         return user;
     }
