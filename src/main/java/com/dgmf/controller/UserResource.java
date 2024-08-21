@@ -3,6 +3,7 @@ package com.dgmf.controller;
 import com.dgmf.entity.User;
 import com.dgmf.exception.UserNotFoundException;
 import com.dgmf.service.UserDaoService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -35,7 +36,7 @@ public class UserResource {
 
     // Create User REST API
     @PostMapping("/users")
-    public ResponseEntity<User> createUser(@RequestBody User user) {
+    public ResponseEntity<User> createUser(@Valid @RequestBody User user) {
         User savedUser = userDaoService.saveUser(user);
         // "/users/4" => "/users/" + "user.getId"
         URI location = ServletUriComponentsBuilder.fromCurrentRequest()
