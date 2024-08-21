@@ -46,4 +46,10 @@ public class UserDaoServiceImpl implements UserDaoService {
 
         return user;
     }
+
+    @Override
+    public void deleteOneById(int userId) {
+        Predicate<? super User> predicate = user -> user.getId().equals(userId);
+        users.removeIf(predicate);
+    }
 }

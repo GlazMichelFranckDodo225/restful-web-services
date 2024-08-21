@@ -8,4 +8,5 @@ public interface UserDaoService {
     List<User> findAll();
     User findOneById(int userId);
     User saveUser(User user);
+    void deleteOneById(int userId);
 }

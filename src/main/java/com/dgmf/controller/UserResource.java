@@ -3,7 +3,6 @@ package com.dgmf.controller;
 import com.dgmf.entity.User;
 import com.dgmf.exception.UserNotFoundException;
 import com.dgmf.service.UserDaoService;
-import com.dgmf.service.impl.UserDaoServiceImpl;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -45,5 +44,11 @@ public class UserResource {
                 .toUri();
 
         return ResponseEntity.created(location).build();
+    }
+
+    // Delete User By Id REST API
+     @DeleteMapping("/users/{id}")
+    public void deleteUser(@PathVariable("id") int userId) {
+        userDaoService.deleteOneById(userId);
     }
 }
