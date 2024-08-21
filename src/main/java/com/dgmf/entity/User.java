@@ -12,8 +12,8 @@ import java.time.LocalDate;
 @Data  @NoArgsConstructor @AllArgsConstructor @Builder
 public class User {
     private Integer id;
-    @Size(min = 2)
+    @Size(min = 2, message = "Name Should Have At Least 2 Characters")
     private String name;
-    @Past
+    @Past(message = "Birth Date Should Be in the Past")
     private LocalDate birthDate;
 }
